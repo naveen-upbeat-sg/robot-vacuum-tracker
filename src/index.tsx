@@ -10,9 +10,9 @@
 
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Hello from "./components/Hello";
+import BasicLayout from "./containers/BasicLayout";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 //const HelloNode = <Hello />;
-root.render(<Hello />);
+root.render(<BasicLayout />);
