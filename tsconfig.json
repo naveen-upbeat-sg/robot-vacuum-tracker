@@ -1,0 +1,11 @@
+// tsconfig.json
+{
+    "compilerOptions": {  
+      "jsx": "react-jsx",
+      "esModuleInterop": true,
+      "target": "es5",
+      "lib": ["es5", "dom"],
+      "types": ["cypress", "node"]
+    },
+    
+}
