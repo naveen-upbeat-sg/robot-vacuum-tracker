@@ -7,7 +7,9 @@
     "test": "jest",
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/naveen-upbeat-sg/robot-vacuum-tracker/issues"
   },
-  "homepage": "https://github.com/naveen-upbeat-sg/robot-vacuum-tracker#readme",
+  "homepage": "https://naveen-upbeat-sg.github.io/robot-vacuum-tracker/build/index.html",
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
@@ -29,6 +31,7 @@
     "@types/react-dom": "^18.0.11",
     "babel-loader": "^9.1.2",
     "cypress": "^12.8.1",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
