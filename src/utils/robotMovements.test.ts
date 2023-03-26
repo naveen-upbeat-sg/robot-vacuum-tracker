@@ -1,4 +1,5 @@
 import {LocationAlias, placeRobot, RobotFacing} from './robotMovements'
+//import jest from 'jest'
 
 describe('RobotVacuum Movements - ', () => { 
     describe('place method - ', ()=>{
@@ -6,7 +7,7 @@ describe('RobotVacuum Movements - ', () => {
                 const testLocation:LocationAlias = {x: 3, y:2};
                 const testFacing : RobotFacing = RobotFacing.east;
                 const result:number = placeRobot(testLocation, testFacing);
-                expect(result).toBe(0);
+                expect(result).equals(0);
         });
     })
 
