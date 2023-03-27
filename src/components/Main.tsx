@@ -51,11 +51,11 @@ function ScrollTop(props: Props) {
   );
 }
 const Main = (props: Props) => {
-  console.log(props.children);
-  console.log()
+//   console.log(props.children);
+//   console.log();
   return (
     <Fragment>
-      <Toolbar sx={{ height: '0px' }} id='back-to-top-anchor' disableGutters={true} />
+      <Toolbar className='back-to-top' sx={{ height: '0px', minHeight:'10px !important' }} id='back-to-top-anchor' disableGutters={true} />
       {props.children}
       <ScrollTop {...props}>
         <Fab size='small' aria-label='scroll back to top'>
