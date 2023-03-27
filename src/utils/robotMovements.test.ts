@@ -9,14 +9,12 @@ import {
 import { describe, expect } from '@jest/globals';
 
 describe('RobotVacuum Movements - ', () => {
-
   const defaultGrid: RobotMovmentGrid = {
     x: 4,
     y: 4,
   };
 
   describe('place method - ', () => {
-
     it(`is a valid method`, () => {
       expect(placeRobot).toBeDefined();
     });
@@ -24,14 +22,16 @@ describe('RobotVacuum Movements - ', () => {
     it('when invoked with location and facing returns nothing', () => {
       const testLocation: LocationAlias = { x: 3, y: 2 };
       const testFacing: RobotFacing = RobotFacing.east;
-      const result: number = placeRobot(testLocation, defaultGrid, testFacing);
-      expect(result).toBe(0);
+      const result = placeRobot(
+        testLocation,
+        defaultGrid,
+        testFacing
+      );
+      expect(result.location.x).toBe(0);
     });
-
   });
 
   describe('isLocationValid - ', () => {
-
     it(`method is defined`, () => {
       expect(isLocationValid).toBeDefined();
     });
@@ -56,7 +56,5 @@ describe('RobotVacuum Movements - ', () => {
       const isValid = isLocationValid(testLocation, grid);
       expect(isValid).toBeTruthy();
     });
-
   });
-
 });
