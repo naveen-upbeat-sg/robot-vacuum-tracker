@@ -64,7 +64,7 @@ const BasicLayout = (props: Props) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <RobotControl></RobotControl>
+                <RobotControl state={state} dispatch={dispatch}></RobotControl>
               </Box>
             </Grid>
           </Grid>

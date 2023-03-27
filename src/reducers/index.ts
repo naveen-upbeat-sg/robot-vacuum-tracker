@@ -1,5 +1,10 @@
 import { RobotStateType } from '../store';
-import { placeRobot } from '../utils/robotMovements';
+import {
+  newFacingOnRotation,
+  nextLocationOnMove,
+  placeRobot,
+  RobotRotate,
+} from '../utils/robotMovements';
 
 export type RobotAction = {
   type: string;
@@ -18,7 +23,7 @@ function appReducer(state: RobotStateType, action: RobotAction): RobotStateType 
     case RobotActionCommand.place:
       const robotPosition = placeRobot(
         action.payload.location,
-        action.payload.grid,
+        action.payload.gridSize,
         action.payload.facing
       );
       return {
@@ -27,7 +32,18 @@ function appReducer(state: RobotStateType, action: RobotAction): RobotStateType 
         location: robotPosition ? robotPosition.location : null,
       };
     case RobotActionCommand.move:
-      return { ...state };
+      const newLocationOnMove = nextLocationOnMove(
+        action.payload.location,
+        action.payload.gridSize,
+        action.payload.facing
+      );
+      return { ...state, location: newLocationOnMove };
+    case RobotActionCommand.rotateLeft:
+      const newLocationOnRotate = newFacingOnRotation(RobotRotate.left, action.payload.facing);
+      return { ...state, facing: newLocationOnRotate };
+    case RobotActionCommand.rotateRight:
+      const newLocationOnRotateRight = newFacingOnRotation(RobotRotate.right, action.payload.facing);
+      return { ...state, facing: newLocationOnRotateRight };
     default:
       return state;
   }

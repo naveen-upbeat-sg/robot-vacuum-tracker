@@ -5,6 +5,8 @@ import { Container } from '@mui/material';
 import { Box } from '@mui/material';
 import { LocationAlias, RobotFacing } from '../utils/robotMovements';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import { Typography } from '@mui/material';
+
 
 export type GridSize = {
   x: number;
