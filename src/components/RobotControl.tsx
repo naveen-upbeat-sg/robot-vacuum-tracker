@@ -72,7 +72,9 @@ const RobotControl = (props: any) => {
         justifyContent: 'center',
         justifyItems: 'stretch',
       }}>
-        <Typography variant='h4' sx={{flex:1, justifyContent:'center', display:'flex'}}>Robot Commands</Typography>
+      <Typography variant='h4' sx={{ flex: 1, justifyContent: 'center', display: 'flex' }}>
+        Robot Commands
+      </Typography>
       <Box sx={{ padding: '20px', flex: '1' }}>
         <Container sx={{ display: 'flex' }}>
           <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -83,6 +85,7 @@ const RobotControl = (props: any) => {
                 id='standard-basic'
                 label='X: '
                 variant='standard'
+                // value={xLocation}
                 onChange={(e) => setXLocation(Number(e.target.value) as number)}
               />
             </Box>
@@ -93,6 +96,7 @@ const RobotControl = (props: any) => {
                 id='standard-basic'
                 label='Y: '
                 variant='standard'
+                // value={yLocation}
                 onChange={(e) => setYLocation(Number(e.target.value) as number)}
               />
             </Box>
@@ -100,7 +104,7 @@ const RobotControl = (props: any) => {
               {/* <TextField id='standard-basic' label='Facing: ' variant='standard' /> */}
               <Select
                 id='demo-simple-select'
-                value={facing || RobotFacing.east}
+                // value={facing || RobotFacing.east}
                 label='Facing'
                 onChange={(e) => setFacing(e.target.value as RobotFacing)}>
                 <MenuItem value={RobotFacing.north}>{RobotFacing.north}</MenuItem>

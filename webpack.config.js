@@ -1,23 +1,28 @@
 // webpack.config.js
 
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: './src/index.tsx',
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "build"),
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "public", "index.html"),
+      template: path.join(__dirname, 'public', 'index.html'),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/img", to: "img" },
+      ],
     }),
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, "build"),
+      directory: path.join(__dirname, 'build'),
     },
     port: 3020,
   },
@@ -27,16 +32,23 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: ['babel-loader'],
       },
-      { 
-        test: /\.(ts|tsx)$/, 
-        loader: "ts-loader" 
-      }
+      {
+        test: /\.(ts|tsx)$/,
+        loader: 'ts-loader',
+      },
+      {
+        test: /\.(png|jpe?g|gif|jp2|webp)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
+      },
     ],
   },
   // pass all js files through Babel
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
-  }
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+  },
 };

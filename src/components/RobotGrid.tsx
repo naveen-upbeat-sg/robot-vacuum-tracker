@@ -30,18 +30,18 @@ const RobotGrid = (props: Props) => {
     let rotateString = 'rotate(0)';
     if (facing) {
       switch (facing) {
-        case RobotFacing.east: {
-          break;
-        }
         case RobotFacing.north: {
-          rotateString = 'rotate(-90deg)';
-          break;
-        }
-        case RobotFacing.south: {
-          rotateString = 'rotate(90deg)';
           break;
         }
         case RobotFacing.west: {
+          rotateString = 'rotate(-90deg)';
+          break;
+        }
+        case RobotFacing.east: {
+          rotateString = 'rotate(90deg)';
+          break;
+        }
+        case RobotFacing.south: {
           rotateString = 'rotate(180deg)';
           break;
         }
@@ -65,20 +65,38 @@ const RobotGrid = (props: Props) => {
                   return (
                     <Box
                       key={`x_${xLocationIndex}_y_${yLocationIndex}`}
-                      sx={{ border: '1px dotted #000', minHeight: '50px', minWidth: '50px' }}>
+                      sx={{
+                        border: '1px dotted #000',
+                        minHeight: '50px',
+                        minWidth: '50px',
+                        backgroundColor:
+                          xLocationIndex % 2 == 0
+                            ? yLocationIndex % 2 == 0
+                              ? 'grey'
+                              : 'whitesmoke'
+                            : yLocationIndex % 2 == 1
+                            ? 'grey'
+                            : 'whitesmoke',
+                      }}>
                       {/* {xLocationIndex + ', ' + yLocationIndex} */}
                       {location && location.x == xLocationIndex && location.y == yLocationIndex && (
                         <Box
                           sx={{
-                            minHeight: '50px',
+                            height: '50px',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
                           }}>
-                          <PlayCircleFilledWhiteIcon
+                          {/* <PlayCircleFilledWhiteIcon
                             sx={{
                               transform: robotIconRotation(facing),
-                            }}></PlayCircleFilledWhiteIcon>
+                            }}></PlayCircleFilledWhiteIcon> */}
+                          <Box sx={{height:'100%'}}>
+                            <img
+                              style={{ maxHeight: '45px', transform: robotIconRotation(facing), }}
+                              src='/img/roboticVacuum.png'
+                              alt='robotic-image'></img>
+                          </Box>
                         </Box>
                       )}
                     </Box>
@@ -118,7 +136,7 @@ const RobotGrid = (props: Props) => {
               alignItems: 'center',
               border: '1px solid #000',
               borderLeft: '0px',
-              flexDirection:'column'
+              flexDirection: 'column',
             }}>
             <Typography variant='h6'>Command History</Typography>
             <Box
