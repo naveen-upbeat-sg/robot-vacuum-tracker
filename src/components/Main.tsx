@@ -5,7 +5,6 @@ import { Fade } from '@mui/material';
 import React, { Fragment } from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Toolbar } from '@mui/material';
-import { height } from '@mui/system';
 
 interface Props {
   /**
@@ -51,11 +50,14 @@ function ScrollTop(props: Props) {
   );
 }
 const Main = (props: Props) => {
-//   console.log(props.children);
-//   console.log();
   return (
     <Fragment>
-      <Toolbar className='back-to-top' sx={{ height: '0px', minHeight:'10px !important' }} id='back-to-top-anchor' disableGutters={true} />
+      <Toolbar
+        className='back-to-top'
+        sx={{ height: '0px', minHeight: '10px !important' }}
+        id='back-to-top-anchor'
+        disableGutters={true}
+      />
       {props.children}
       <ScrollTop {...props}>
         <Fab size='small' aria-label='scroll back to top'>

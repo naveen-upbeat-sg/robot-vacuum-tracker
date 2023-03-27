@@ -1,16 +1,81 @@
-import { Grid } from '@mui/material';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import React, { Fragment, ReactFragment } from 'react';
 import { Container } from '@mui/material';
 import { Box } from '@mui/material';
 import { LocationAlias, RobotFacing } from '../utils/robotMovements';
-import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+// import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 
 export type GridSize = {
   x: number;
   y: number;
+};
+
+interface CommandHistoryProps {
+  commandHistory: Array<string>;
+}
+
+const CommandHistory = (props: CommandHistoryProps) => {
+  const { commandHistory } = props;
+  return (
+    <Container
+      sx={{
+        display: 'flex',
+        flex: '1',
+        alignItems: 'center',
+        border: '1px solid #000',
+        borderLeft: '0px',
+        flexDirection: 'column',
+      }}>
+      <Typography variant='h6'>Command History</Typography>
+      <Box
+        sx={{
+          border: '1px solid #000',
+          flex: 1,
+          minHeight: '200px',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+        {commandHistory.map((cmd: string, cmdIndex: number) => {
+          return <Typography variant='body2'>{`${cmdIndex + 1}. ${cmd}`}</Typography>;
+        })}
+      </Box>
+    </Container>
+  );
+};
+
+interface CommandReportProps {
+  reportMessage: string;
+}
+
+const CommandReport = (props: CommandReportProps) => {
+  const { reportMessage } = props;
+  return (
+    <Container
+      sx={{
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center',
+        border: '1px solid #000',
+        borderRight: '0px',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
+      <Typography variant='h6'>Report</Typography>
+      <Box
+        sx={{
+          border: '1px solid #000',
+          flex: 1,
+          minHeight: '200px',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+        {reportMessage}
+      </Box>
+    </Container>
+  );
 };
 
 interface Props {
@@ -22,35 +87,33 @@ interface Props {
   commandHistory: Array<string>;
 }
 
-const RobotGrid = (props: Props) => {
-  const { x, y } = props.gridSize;
-  //console.log('x: ', x, 'y: ', y);
-  const { location, facing, reportMessage, commandHistory } = props;
-  //console.log(props);
-
-  const robotIconRotation = (facing: RobotFacing | null) => {
-    let rotateString = 'rotate(0)';
-    if (facing) {
-      switch (facing) {
-        case RobotFacing.north: {
-          break;
-        }
-        case RobotFacing.west: {
-          rotateString = 'rotate(-90deg)';
-          break;
-        }
-        case RobotFacing.east: {
-          rotateString = 'rotate(90deg)';
-          break;
-        }
-        case RobotFacing.south: {
-          rotateString = 'rotate(180deg)';
-          break;
-        }
+const robotIconRotation = (facing: RobotFacing | null) => {
+  let rotateString = 'rotate(0)';
+  if (facing) {
+    switch (facing) {
+      case RobotFacing.north: {
+        break;
+      }
+      case RobotFacing.west: {
+        rotateString = 'rotate(-90deg)';
+        break;
+      }
+      case RobotFacing.east: {
+        rotateString = 'rotate(90deg)';
+        break;
+      }
+      case RobotFacing.south: {
+        rotateString = 'rotate(180deg)';
+        break;
       }
     }
-    return rotateString;
-  };
+  }
+  return rotateString;
+};
+
+const RobotGrid = (props: Props) => {
+  const { x, y } = props.gridSize;
+  const { location, facing, reportMessage, commandHistory } = props;
 
   return (
     <Fragment>
@@ -108,55 +171,12 @@ const RobotGrid = (props: Props) => {
             );
           })}
         </Container>
+
         <Divider />
+
         <Container sx={{ display: 'flex', flex: '1', justifyContent: 'space-between' }}>
-          <Container
-            sx={{
-              display: 'flex',
-              flex: 1,
-              justifyContent: 'center',
-              border: '1px solid #000',
-              borderRight: '0px',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
-            <Typography variant='h6'>Report</Typography>
-            <Box
-              sx={{
-                border: '1px solid #000',
-                flex: 1,
-                minHeight: '200px',
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-              {reportMessage}
-            </Box>
-          </Container>
-          <Container
-            sx={{
-              display: 'flex',
-              flex: '1',
-              alignItems: 'center',
-              border: '1px solid #000',
-              borderLeft: '0px',
-              flexDirection: 'column',
-            }}>
-            <Typography variant='h6'>Command History</Typography>
-            <Box
-              sx={{
-                border: '1px solid #000',
-                flex: 1,
-                minHeight: '200px',
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-              {commandHistory.map((cmd: string, cmdIndex: number) => {
-                return <Typography variant='body2'>{`${cmdIndex + 1}. ${cmd}`}</Typography>;
-              })}
-            </Box>
-          </Container>
+          <CommandReport reportMessage={reportMessage}></CommandReport>
+          <CommandHistory commandHistory={commandHistory}></CommandHistory>
         </Container>
       </Container>
     </Fragment>

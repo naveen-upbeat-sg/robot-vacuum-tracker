@@ -4,8 +4,6 @@ import { useScrollTrigger } from '@mui/material';
 import { AppBar } from '@mui/material';
 import { Toolbar } from '@mui/material';
 import { Typography } from '@mui/material';
-import { Fade } from '@mui/material';
-import { Box } from '@mui/material';
 
 interface Props {
   /**
