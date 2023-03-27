@@ -18,13 +18,15 @@ interface Props {
   children: React.ReactElement;
   location: LocationAlias;
   facing: RobotFacing;
+  reportMessage: string;
+  commandHistory: Array<string>;
 }
 
 const RobotGrid = (props: Props) => {
   const { x, y } = props.gridSize;
-  console.log('x: ', x, 'y: ', y);
-  const { location, facing } = props;
-  console.log(props);
+  //console.log('x: ', x, 'y: ', y);
+  const { location, facing, reportMessage, commandHistory } = props;
+  //console.log(props);
 
   const robotIconRotation = (facing: RobotFacing | null) => {
     let rotateString = 'rotate(0)';
@@ -91,10 +93,10 @@ const RobotGrid = (props: Props) => {
                             sx={{
                               transform: robotIconRotation(facing),
                             }}></PlayCircleFilledWhiteIcon> */}
-                          <Box sx={{height:'100%'}}>
+                          <Box sx={{ height: '100%' }}>
                             <img
-                              style={{ maxHeight: '45px', transform: robotIconRotation(facing), }}
-                              src='/img/roboticVacuum.png'
+                              style={{ maxHeight: '45px', transform: robotIconRotation(facing) }}
+                              src={window.location.href + 'img/roboticVacuum.png'}
                               alt='robotic-image'></img>
                           </Box>
                         </Box>
@@ -127,7 +129,9 @@ const RobotGrid = (props: Props) => {
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-              }}></Box>
+              }}>
+              {reportMessage}
+            </Box>
           </Container>
           <Container
             sx={{
@@ -147,7 +151,11 @@ const RobotGrid = (props: Props) => {
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-              }}></Box>
+              }}>
+              {commandHistory.map((cmd: string, cmdIndex: number) => {
+                return <Typography variant='body2'>{`${cmdIndex + 1}. ${cmd}`}</Typography>;
+              })}
+            </Box>
           </Container>
         </Container>
       </Container>

@@ -20,7 +20,7 @@ interface Props {
 
 const BasicLayout = (props: Props) => {
   const { state, dispatch } = props;
-  
+
   const defaultGridSize: GridSize = {
     x: 4,
     y: 4,
@@ -30,6 +30,10 @@ const BasicLayout = (props: Props) => {
 
   const defaultFacing: RobotFacing | null = state.facing;
 
+  const defaultReportMessage: string = state.reportMessage;
+
+  const defaultCommandHistory: Array<string> = state.commandHistory;
+
   return (
     <Fragment>
       <Header>
@@ -38,8 +42,8 @@ const BasicLayout = (props: Props) => {
       <br />
       <Main>
         <Fragment>
-          <Typography variant='h5'>Work in progress...</Typography>
-          <Typography variant='subtitle1'>Thank you for your patience</Typography>
+          {/* <Typography variant='h5'>Work in progress...</Typography>
+          <Typography variant='subtitle1'>Thank you for your patience</Typography> */}
           <Grid container sx={{ minHeight: '100vh' }}>
             <Grid xs={12} md={8} item>
               <Box
@@ -50,7 +54,12 @@ const BasicLayout = (props: Props) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <RobotGrid gridSize={defaultGridSize} location={defaultLocation} facing={defaultFacing}>
+                <RobotGrid
+                  gridSize={defaultGridSize}
+                  location={defaultLocation}
+                  facing={defaultFacing}
+                  reportMessage={defaultReportMessage}
+                  commandHistory={defaultCommandHistory}>
                   <div></div>
                 </RobotGrid>
               </Box>
