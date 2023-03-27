@@ -8,11 +8,20 @@
 // div.innerHTML =sayHelloManyTimes(10).join("<br/>");
 // document.body.append(div);
 
-import React from "react";
+import { CssBaseline } from "@mui/material";
+import React, { Fragment } from "react";
 import { createRoot } from "react-dom/client";
 import BasicLayout from "./containers/BasicLayout";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 //const HelloNode = <Hello />;
-root.render(<BasicLayout />);
+
+const App = () => {
+    return <Fragment>
+        <CssBaseline />
+        <BasicLayout />
+    </Fragment>
+}
+
+root.render(<App />);

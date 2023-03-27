@@ -5,6 +5,8 @@ import { useScrollTrigger } from "@mui/material";
 import { AppBar } from "@mui/material";
 import { Toolbar } from "@mui/material";
 import { Typography } from "@mui/material";
+import { Fade } from "@mui/material";
+import { Box } from "@mui/material";
 
 interface Props {
     /**
@@ -31,6 +33,8 @@ function ElevationScroll(props: Props) {
     });
   } 
 
+  
+
 
 const Header = (props: Props) => <React.Fragment>
       <CssBaseline />
@@ -43,6 +47,7 @@ const Header = (props: Props) => <React.Fragment>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
+      
       </React.Fragment>
 
 export default Header;
