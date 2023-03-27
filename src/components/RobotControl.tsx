@@ -70,9 +70,10 @@ const RobotControl = (props: any) => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        justifyItems: 'center',
+        justifyItems: 'stretch',
       }}>
-      <Box sx={{ padding: '20px' }}>
+        <Typography variant='h4' sx={{flex:1, justifyContent:'center', display:'flex'}}>Robot Commands</Typography>
+      <Box sx={{ padding: '20px', flex: '1' }}>
         <Container sx={{ display: 'flex' }}>
           <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {/* <Container sx={{ display: 'flex' }}> */}
@@ -98,10 +99,9 @@ const RobotControl = (props: any) => {
             <Box sx={{ padding: '5px' }}>
               {/* <TextField id='standard-basic' label='Facing: ' variant='standard' /> */}
               <Select
-                labelId='demo-simple-select-label'
                 id='demo-simple-select'
-                value={facing}
-                label='Age'
+                value={facing || RobotFacing.east}
+                label='Facing'
                 onChange={(e) => setFacing(e.target.value as RobotFacing)}>
                 <MenuItem value={RobotFacing.north}>{RobotFacing.north}</MenuItem>
                 <MenuItem value={RobotFacing.east}>{RobotFacing.east}</MenuItem>
@@ -117,30 +117,41 @@ const RobotControl = (props: any) => {
       </Box>
 
       <Box
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
-        <Button variant='contained' onClick={handleSetMove}>
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '20px',
+          flex: '1',
+        }}>
+        <Button variant='contained' onClick={handleSetMove} sx={{ flex: '1' }}>
           Move
         </Button>
       </Box>
 
-      <Box sx={{ padding: '20px' }}>
-        <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography variant='body1'>Rotate</Typography>
+      <Box sx={{ padding: '20px', flex: '1' }}>
+        <Container
+          sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left', flex: '1' }}
+          disableGutters>
+          <Typography variant='h6' sx={{ justifyContent: 'left' }}>
+            Rotate
+          </Typography>
           <Container
             sx={{
               display: 'flex',
-              justifyItems: 'center',
               alignItems: 'center',
-              justifyContent: 'center',
-            }}>
+              justifyContent: 'space-between',
+              flex: '1',
+            }}
+            disableGutters>
             <Button
-              sx={{ padding: '10px', margin: '10px' }}
+              sx={{ marginRight: '5px', flex: '1' }}
               variant='contained'
               onClick={() => handleSetRotate(RobotActionCommand.rotateLeft)}>
               Left
             </Button>
             <Button
-              sx={{ padding: '10px', margin: '10px' }}
+              sx={{ flex: '1', marginLeft: '5px' }}
               variant='contained'
               onClick={() => handleSetRotate(RobotActionCommand.rotateRight)}>
               Right
@@ -150,9 +161,17 @@ const RobotControl = (props: any) => {
       </Box>
 
       <Box
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '20px',
+          flex: '1',
+        }}
         flex={1}>
-        <Button variant='contained'>Report</Button>
+        <Button variant='contained' sx={{ flex: '1' }}>
+          Report
+        </Button>
       </Box>
     </Container>
   );

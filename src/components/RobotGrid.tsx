@@ -6,6 +6,7 @@ import { Box } from '@mui/material';
 import { LocationAlias, RobotFacing } from '../utils/robotMovements';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { Typography } from '@mui/material';
+import Divider from '@mui/material/Divider';
 
 export type GridSize = {
   x: number;
@@ -51,38 +52,86 @@ const RobotGrid = (props: Props) => {
 
   return (
     <Fragment>
-      <Container sx={{ display: 'flex', flexDirection: 'row' }}>
-        {[...new Array(x + 1)].map((item: number, xLocationIndex: number) => {
-          return (
-            <Container
-              key={`x_${xLocationIndex}`}
-              sx={{ display: 'flex', flexDirection: 'column-reverse' }} disableGutters>
-              {[...new Array(y + 1)].map((columnItem: number, yLocationIndex: number) => {
-                return (
-                  <Box
-                    key={`x_${xLocationIndex}_y_${yLocationIndex}`}
-                    sx={{ border: '1px dotted #000', minHeight: '50px', minWidth: '50px' }}>
-                    {/* {xLocationIndex + ', ' + yLocationIndex} */}
-                    {location && location.x == xLocationIndex && location.y == yLocationIndex && (
-                      <Box
-                        sx={{
-                          minHeight: '50px',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}>
-                        <PlayCircleFilledWhiteIcon
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Typography variant='h4'>Robot Grid</Typography>
+        <Container sx={{ display: 'flex', flexDirection: 'row', marginBottom: '20px' }}>
+          {[...new Array(x + 1)].map((item: number, xLocationIndex: number) => {
+            return (
+              <Container
+                key={`x_${xLocationIndex}`}
+                sx={{ display: 'flex', flexDirection: 'column-reverse' }}
+                disableGutters>
+                {[...new Array(y + 1)].map((columnItem: number, yLocationIndex: number) => {
+                  return (
+                    <Box
+                      key={`x_${xLocationIndex}_y_${yLocationIndex}`}
+                      sx={{ border: '1px dotted #000', minHeight: '50px', minWidth: '50px' }}>
+                      {/* {xLocationIndex + ', ' + yLocationIndex} */}
+                      {location && location.x == xLocationIndex && location.y == yLocationIndex && (
+                        <Box
                           sx={{
-                            transform: robotIconRotation(facing),
-                          }}></PlayCircleFilledWhiteIcon>
-                      </Box>
-                    )}
-                  </Box>
-                );
-              })}
-            </Container>
-          );
-        })}
+                            minHeight: '50px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          }}>
+                          <PlayCircleFilledWhiteIcon
+                            sx={{
+                              transform: robotIconRotation(facing),
+                            }}></PlayCircleFilledWhiteIcon>
+                        </Box>
+                      )}
+                    </Box>
+                  );
+                })}
+              </Container>
+            );
+          })}
+        </Container>
+        <Divider />
+        <Container sx={{ display: 'flex', flex: '1', justifyContent: 'space-between' }}>
+          <Container
+            sx={{
+              display: 'flex',
+              flex: 1,
+              justifyContent: 'center',
+              border: '1px solid #000',
+              borderRight: '0px',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+            <Typography variant='h6'>Report</Typography>
+            <Box
+              sx={{
+                border: '1px solid #000',
+                flex: 1,
+                minHeight: '200px',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}></Box>
+          </Container>
+          <Container
+            sx={{
+              display: 'flex',
+              flex: '1',
+              alignItems: 'center',
+              border: '1px solid #000',
+              borderLeft: '0px',
+              flexDirection:'column'
+            }}>
+            <Typography variant='h6'>Command History</Typography>
+            <Box
+              sx={{
+                border: '1px solid #000',
+                flex: 1,
+                minHeight: '200px',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+              }}></Box>
+          </Container>
+        </Container>
       </Container>
     </Fragment>
   );
