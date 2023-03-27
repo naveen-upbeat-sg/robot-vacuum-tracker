@@ -7,7 +7,6 @@ import { LocationAlias, RobotFacing } from '../utils/robotMovements';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { Typography } from '@mui/material';
 
-
 export type GridSize = {
   x: number;
   y: number;
@@ -55,15 +54,23 @@ const RobotGrid = (props: Props) => {
       <Container sx={{ display: 'flex', flexDirection: 'row' }}>
         {[...new Array(x + 1)].map((item: number, xLocationIndex: number) => {
           return (
-            <Container key={`x_${xLocationIndex}`} sx={{ display: 'flex', flexDirection: 'column-reverse' }}>
+            <Container
+              key={`x_${xLocationIndex}`}
+              sx={{ display: 'flex', flexDirection: 'column-reverse' }} disableGutters>
               {[...new Array(y + 1)].map((columnItem: number, yLocationIndex: number) => {
                 return (
                   <Box
                     key={`x_${xLocationIndex}_y_${yLocationIndex}`}
-                    sx={{ border: '1px solid #000' }}>
-                    {xLocationIndex + ', ' + yLocationIndex}
+                    sx={{ border: '1px dotted #000', minHeight: '50px', minWidth: '50px' }}>
+                    {/* {xLocationIndex + ', ' + yLocationIndex} */}
                     {location && location.x == xLocationIndex && location.y == yLocationIndex && (
-                      <Box>
+                      <Box
+                        sx={{
+                          minHeight: '50px',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}>
                         <PlayCircleFilledWhiteIcon
                           sx={{
                             transform: robotIconRotation(facing),
