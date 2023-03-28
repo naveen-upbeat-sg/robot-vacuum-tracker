@@ -1,5 +1,5 @@
-describe('template spec', () => {
-  it('passes', () => {
-    cy.visit('https://example.cypress.io')
+describe('GitHub IO page', () => {
+  it('it opens', () => {
+    cy.visit('http://localhost:3020/')
   })
 })

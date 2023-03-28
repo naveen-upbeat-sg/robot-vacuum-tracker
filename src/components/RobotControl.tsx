@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
 
-import { Container, Box, Divider } from '@mui/material';
+import { Container, Box, Divider, InputLabel, FormControl } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -119,12 +119,18 @@ const RobotControl = (props: any) => {
         flexDirection: 'column',
         justifyContent: 'center',
         justifyItems: 'stretch',
+        gap: '10px',
       }}>
-      <Typography variant='h4' sx={{ flex: 1, justifyContent: 'center', display: 'flex' }}>
+      <Typography
+        variant='h4'
+        sx={{ flex: 1, justifyContent: 'center', display: 'flex', marginBottom: '10px' }}>
         Robot Commands
       </Typography>
+
       <Box>
-        <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Container
+          sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          disableGutters>
           <TextField
             label='Enter commands at once'
             data-test-id='multi-commands-box'
@@ -141,63 +147,74 @@ const RobotControl = (props: any) => {
           <Button
             data-test-id='multi-commands-button'
             variant='contained'
-            sx={{ flex: '1', marginBottom: '15px' }}
+            sx={{ flex: '1', marginBottom: '15px', width: '100%' }}
             onClick={(_) => enterButtonClickHandler()}>
             Enter
           </Button>
         </Container>
       </Box>
 
-      <Divider sx={{ minWidth: '20px' }} />
+      <Divider sx={{ minWidth: '10px' }} />
 
-      <Typography variant='h6' sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center' }}>
         - OR -
       </Typography>
 
       <Divider sx={{ minWidth: '20px' }} />
 
-      <Box sx={{ padding: '20px', flex: '1' }}>
-        <Container sx={{ display: 'flex' }}>
-          <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Box sx={{ padding: '5px' }}>
-              <TextField
-                id='standard-basic'
-                data-test-id='position-x-box'
-                label='X: '
-                variant='standard'
-                value={localUIState.xLocation}
-                onChange={(e) =>
-                  setUiState({ ...localUIState, xLocation: Number(e.target.value) as number })
-                }
-              />
-            </Box>
-            {/* </Container> */}
-
-            <Box sx={{ padding: '5px' }}>
-              <TextField
-                data-test-id='position-y-box'
-                label='Y: '
-                variant='standard'
-                value={localUIState.yLocation}
-                onChange={(e) =>
-                  setUiState({ ...localUIState, yLocation: Number(e.target.value) as number })
-                }
-              />
-            </Box>
-            <Box sx={{ padding: '5px' }}>
-              <Select
-                id='demo-simple-select'
-                data-test-id='facing-select-box'
-                value={localUIState.robotFacing || ''}
-                label='Facing'
-                onChange={(e) =>
-                  setUiState({ ...localUIState, robotFacing: e.target.value as RobotFacing })
-                }>
-                <MenuItem value={RobotFacing.north}>{RobotFacing.north}</MenuItem>
-                <MenuItem value={RobotFacing.east}>{RobotFacing.east}</MenuItem>
-                <MenuItem value={RobotFacing.south}>{RobotFacing.south}</MenuItem>
-                <MenuItem value={RobotFacing.west}>{RobotFacing.west}</MenuItem>
-              </Select>
+      <Box sx={{ flex: '1' }}>
+        <Container sx={{ display: 'flex', gap: '10px' }} disableGutters>
+          <Container
+            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}
+            disableGutters>
+            <Container
+              sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}
+              disableGutters>
+              <Box>
+                <TextField
+                  id='standard-basic'
+                  data-test-id='position-x-box'
+                  label='X: '
+                  variant='standard'
+                  //value={localUIState.xLocation}
+                  onChange={(e) =>
+                    setUiState({ ...localUIState, xLocation: Number(e.target.value) as number })
+                  }
+                />
+              </Box>
+              <Box>
+                <TextField
+                  data-test-id='position-y-box'
+                  label='Y: '
+                  variant='standard'
+                  //value={localUIState.yLocation}
+                  onChange={(e) =>
+                    setUiState({ ...localUIState, yLocation: Number(e.target.value) as number })
+                  }
+                />
+              </Box>
+            </Container>
+            <Box sx={{ display: 'flex', flex: 1, width: '100%' }}>
+              <FormControl fullWidth>
+                <InputLabel id='demo-simple-select-label'>Facing</InputLabel>
+                <Select
+                  labelId='demo-simple-select-label'
+                  id='demo-simple-select'
+                  data-test-id='facing-select-box'
+                  value={localUIState.robotFacing || ''}
+                  label='Facing'
+                  sx={{
+                    width: '100%',
+                  }}
+                  onChange={(e) =>
+                    setUiState({ ...localUIState, robotFacing: e.target.value as RobotFacing })
+                  }>
+                  <MenuItem value={RobotFacing.north}>{RobotFacing.north}</MenuItem>
+                  <MenuItem value={RobotFacing.east}>{RobotFacing.east}</MenuItem>
+                  <MenuItem value={RobotFacing.south}>{RobotFacing.south}</MenuItem>
+                  <MenuItem value={RobotFacing.west}>{RobotFacing.west}</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
           </Container>
           <Button
@@ -214,7 +231,6 @@ const RobotControl = (props: any) => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '20px',
           flex: '1',
         }}>
         <Button
@@ -226,7 +242,7 @@ const RobotControl = (props: any) => {
         </Button>
       </Box>
 
-      <Box sx={{ padding: '20px', flex: '1' }}>
+      <Box sx={{ flex: '1' }}>
         <Container
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left', flex: '1' }}
           disableGutters>
@@ -264,11 +280,15 @@ const RobotControl = (props: any) => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '20px',
+
           flex: '1',
         }}
         flex={1}>
-        <Button variant='contained' data-test-id={'report-button'} sx={{ flex: '1' }} onClick={reportButtonClickHanler}>
+        <Button
+          variant='contained'
+          data-test-id={'report-button'}
+          sx={{ flex: '1' }}
+          onClick={reportButtonClickHanler}>
           Report
         </Button>
       </Box>
