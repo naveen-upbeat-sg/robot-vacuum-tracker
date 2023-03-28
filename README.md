@@ -9,12 +9,12 @@ Steps to run this project
 -> On local developer desktop
 --> * Install basic developer tools -> nodejs, nvm
 --> * npm run install
---> * npm run start, this will open a browser will page on  http://localhost:3020/
+--> * npm run start #this will open a browser will page on  http://localhost:3020/
 
 -> Running Unit tests
 --> * npm run test
 
--> Running a test with providing input from command line and also providing expected output
+-> Run a custom test with input from command line and optionally pass expected output for assertion
 --> * npm run test:custom --  try="PLACE 0,0,EAST|MOVE|MOVE|REPORT" expected="2,0,EAST"
 Some more details about the format:
 the custom argument try="<List of commands>" must be separated by the delimiter "|".
