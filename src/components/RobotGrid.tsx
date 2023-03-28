@@ -53,6 +53,7 @@ const CommandReport = (props: CommandReportProps) => {
   const { reportMessage } = props;
   return (
     <Container
+      data-test-id={'command-report-container'}
       sx={{
         display: 'flex',
         flex: 1,
@@ -117,19 +118,23 @@ const RobotGrid = (props: Props) => {
 
   return (
     <Fragment>
-      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Container
+        data-test-id={'robo-grid-container'}
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography variant='h4'>Robot Grid</Typography>
         <Container sx={{ display: 'flex', flexDirection: 'row', marginBottom: '20px' }}>
           {[...new Array(x + 1)].map((item: number, xLocationIndex: number) => {
             return (
               <Container
                 key={`x_${xLocationIndex}`}
+                data-test-id={`x_${xLocationIndex}`}
                 sx={{ display: 'flex', flexDirection: 'column-reverse' }}
                 disableGutters>
                 {[...new Array(y + 1)].map((columnItem: number, yLocationIndex: number) => {
                   return (
                     <Box
                       key={`x_${xLocationIndex}_y_${yLocationIndex}`}
+                      data-test-id={`x_${xLocationIndex}_y_${yLocationIndex}`}
                       sx={{
                         border: '1px dotted #000',
                         minHeight: '50px',
@@ -156,7 +161,7 @@ const RobotGrid = (props: Props) => {
                             sx={{
                               transform: robotIconRotation(facing),
                             }}></PlayCircleFilledWhiteIcon> */}
-                          <Box sx={{ height: '100%' }}>
+                          <Box sx={{ height: '100%' }} data-test-id={'robotic-image-container'}>
                             <img
                               style={{ maxHeight: '45px', transform: robotIconRotation(facing) }}
                               src={window.location.href + 'img/roboticVacuum.png'}

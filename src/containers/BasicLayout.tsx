@@ -1,9 +1,5 @@
-import { SpaceBar } from '@mui/icons-material';
-import { Toolbar } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Box } from '@mui/material';
-import { Container } from '@mui/material';
-import { Typography } from '@mui/material';
 import { Fragment } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';

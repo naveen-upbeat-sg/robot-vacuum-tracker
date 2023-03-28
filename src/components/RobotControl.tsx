@@ -127,6 +127,7 @@ const RobotControl = (props: any) => {
         <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <TextField
             label='Enter commands at once'
+            data-test-id='multi-commands-box'
             multiline
             rows={4}
             defaultValue='PLACE 0,0,NORTH'
@@ -138,6 +139,7 @@ const RobotControl = (props: any) => {
             }}
           />
           <Button
+            data-test-id='multi-commands-button'
             variant='contained'
             sx={{ flex: '1', marginBottom: '15px' }}
             onClick={(_) => enterButtonClickHandler()}>
@@ -160,6 +162,7 @@ const RobotControl = (props: any) => {
             <Box sx={{ padding: '5px' }}>
               <TextField
                 id='standard-basic'
+                data-test-id='position-x-box'
                 label='X: '
                 variant='standard'
                 value={localUIState.xLocation}
@@ -172,7 +175,7 @@ const RobotControl = (props: any) => {
 
             <Box sx={{ padding: '5px' }}>
               <TextField
-                id='standard-basic'
+                data-test-id='position-y-box'
                 label='Y: '
                 variant='standard'
                 value={localUIState.yLocation}
@@ -182,9 +185,9 @@ const RobotControl = (props: any) => {
               />
             </Box>
             <Box sx={{ padding: '5px' }}>
-              {/* <TextField id='standard-basic' label='Facing: ' variant='standard' /> */}
               <Select
                 id='demo-simple-select'
+                data-test-id='facing-select-box'
                 value={localUIState.robotFacing || ''}
                 label='Facing'
                 onChange={(e) =>
@@ -197,7 +200,10 @@ const RobotControl = (props: any) => {
               </Select>
             </Box>
           </Container>
-          <Button variant='contained' onClick={(_) => placeButtonClickHandler()}>
+          <Button
+            data-test-id={'button-place'}
+            variant='contained'
+            onClick={(_) => placeButtonClickHandler()}>
             Place
           </Button>
         </Container>
@@ -211,7 +217,11 @@ const RobotControl = (props: any) => {
           padding: '20px',
           flex: '1',
         }}>
-        <Button variant='contained' onClick={moveButtonClickHandler} sx={{ flex: '1' }}>
+        <Button
+          data-test-id={'button-move'}
+          variant='contained'
+          onClick={moveButtonClickHandler}
+          sx={{ flex: '1' }}>
           Move
         </Button>
       </Box>
@@ -232,12 +242,14 @@ const RobotControl = (props: any) => {
             }}
             disableGutters>
             <Button
+              data-test-id={'turn-left-button'}
               sx={{ marginRight: '5px', flex: '1' }}
               variant='contained'
               onClick={() => rotateButtonClickHandler(RobotActionCommand.rotateLeft)}>
               Left
             </Button>
             <Button
+              data-test-id={'turn-right-button'}
               sx={{ flex: '1', marginLeft: '5px' }}
               variant='contained'
               onClick={() => rotateButtonClickHandler(RobotActionCommand.rotateRight)}>
@@ -256,7 +268,7 @@ const RobotControl = (props: any) => {
           flex: '1',
         }}
         flex={1}>
-        <Button variant='contained' sx={{ flex: '1' }} onClick={reportButtonClickHanler}>
+        <Button variant='contained' data-test-id={'report-button'} sx={{ flex: '1' }} onClick={reportButtonClickHanler}>
           Report
         </Button>
       </Box>
