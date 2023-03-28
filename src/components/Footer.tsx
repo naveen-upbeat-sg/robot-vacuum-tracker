@@ -6,6 +6,7 @@ const Footer = () => {
   return (
     <Fragment>
       <Container
+        data-test-id={"site-footer"}
         sx={{
           display: 'flex',
           padding: '20px',

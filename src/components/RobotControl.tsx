@@ -114,6 +114,7 @@ const RobotControl = (props: any) => {
 
   return (
     <Container
+      data-test-id="robot-commands-container"
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -129,6 +130,7 @@ const RobotControl = (props: any) => {
 
       <Box>
         <Container
+          data-test-id="multiple-commands-container"
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
           disableGutters>
           <TextField
@@ -162,7 +164,7 @@ const RobotControl = (props: any) => {
 
       <Divider sx={{ minWidth: '20px' }} />
 
-      <Box sx={{ flex: '1' }}>
+      <Box sx={{ flex: '1' }} data-test-id="simple-command-container">
         <Container sx={{ display: 'flex', gap: '10px' }} disableGutters>
           <Container
             sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}

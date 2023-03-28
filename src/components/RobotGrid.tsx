@@ -33,6 +33,7 @@ const CommandHistory = (props: CommandHistoryProps) => {
       }}>
       <Typography variant='h6'>Command History</Typography>
       <Box
+        data-test-id="command-history-box"
         sx={{
           border: '1px solid #000',
           flex: 1,
@@ -69,6 +70,7 @@ const CommandReport = (props: CommandReportProps) => {
       }}>
       <Typography variant='h6'>Report</Typography>
       <Box
+        data-test-id="command-report-box"
         sx={{
           border: '1px solid #000',
           flex: 1,
@@ -201,7 +203,7 @@ const RobotGrid = (props: Props) => {
 
         <Divider />
 
-        <Container sx={{ display: 'flex', flex: '1', justifyContent: 'space-between' }}>
+        <Container data-test-id="command-report-and-history-container" sx={{ display: 'flex', flex: '1', justifyContent: 'space-between' }}>
           <CommandReport reportMessage={reportMessage}></CommandReport>
           <CommandHistory commandHistory={commandHistory}></CommandHistory>
         </Container>
