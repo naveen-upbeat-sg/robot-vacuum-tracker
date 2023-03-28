@@ -33,7 +33,7 @@ const CommandHistory = (props: CommandHistoryProps) => {
       }}>
       <Typography variant='h6'>Command History</Typography>
       <Box
-        data-test-id="command-history-box"
+        data-test-id='command-history-box'
         sx={{
           border: '1px solid #000',
           flex: 1,
@@ -41,6 +41,9 @@ const CommandHistory = (props: CommandHistoryProps) => {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
+          overflow: 'scroll',
+          maxHeight: '300px',
+          padding: '10px',
         }}>
         {commandHistory.map((cmd: string, cmdIndex: number) => {
           return <Typography variant='body2'>{`${cmdIndex + 1}. ${cmd}`}</Typography>;
@@ -70,7 +73,7 @@ const CommandReport = (props: CommandReportProps) => {
       }}>
       <Typography variant='h6'>Report</Typography>
       <Box
-        data-test-id="command-report-box"
+        data-test-id='command-report-box'
         sx={{
           border: '1px solid #000',
           flex: 1,
@@ -78,6 +81,8 @@ const CommandReport = (props: CommandReportProps) => {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
         {reportMessage}
       </Box>
@@ -126,16 +131,30 @@ const RobotGrid = (props: Props) => {
     <Fragment>
       <Container
         data-test-id={'robo-grid-container'}
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap:'15px' }}>
-        <Typography variant='h4'>
-          Robot Grid
-        </Typography>
-        <Container sx={{display:'flex', flexDirection:'row'}}>
-          <Container sx={{display:'flex', flex:'0.3', flexDirection:'column', justifyContent:'space-between'}} disableGutters>
-            <Box> <WestIcon />West </Box>
-            <Box>South<SouthIcon /></Box>
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+        <Typography variant='h4'>Robot Grid</Typography>
+        <Container sx={{ display: 'flex', flexDirection: 'row' }}>
+          <Container
+            sx={{
+              display: 'flex',
+              flex: '0.3',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
+            disableGutters>
+            <Box>
+              {' '}
+              <WestIcon />
+              West{' '}
+            </Box>
+            <Box>
+              South
+              <SouthIcon />
+            </Box>
           </Container>
-          <Container sx={{display: 'flex',flexDirection: 'row', marginBottom: '20px', margin:'5px' }} disableGutters>
+          <Container
+            sx={{ display: 'flex', flexDirection: 'row', marginBottom: '20px', margin: '5px' }}
+            disableGutters>
             {[...new Array(x + 1)].map((item: number, xLocationIndex: number) => {
               return (
                 <Container
@@ -194,16 +213,30 @@ const RobotGrid = (props: Props) => {
               );
             })}
           </Container>
-          <Container sx={{display:'flex', flex:'0.3', flexDirection:'column', justifyContent:'space-between'}} disableGutters>
-            <Box><NorthIcon />North</Box>
-            <Box>East<EastIcon /></Box>
+          <Container
+            sx={{
+              display: 'flex',
+              flex: '0.3',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
+            disableGutters>
+            <Box>
+              <NorthIcon />
+              North
+            </Box>
+            <Box>
+              East
+              <EastIcon />
+            </Box>
           </Container>
-          
         </Container>
 
         <Divider />
 
-        <Container data-test-id="command-report-and-history-container" sx={{ display: 'flex', flex: '1', justifyContent: 'space-between' }}>
+        <Container
+          data-test-id='command-report-and-history-container'
+          sx={{ display: 'flex', flex: '1', justifyContent: 'space-between' }}>
           <CommandReport reportMessage={reportMessage}></CommandReport>
           <CommandHistory commandHistory={commandHistory}></CommandHistory>
         </Container>
