@@ -146,23 +146,22 @@ describe('Robot Vacuum - Simple Commands', () => {
   });
 
   describe('Can Rotate - ', () => {
-    beforeEach(()=>{
-        cy.get('#root [data-test-id=position-x-box] input').type('0');
+    beforeEach(() => {
+      cy.get('#root [data-test-id=position-x-box] input').type('0');
 
-        cy.get('#root [data-test-id=position-y-box] input').type('0');
-  
-        cy.get('#root [data-test-id=facing-select-box] [role=button]').click();
-  
-        cy.get('li[data-value=NORTH]').click();
-  
-        cy.get('#root button[data-test-id=button-place]').click();
-  
-        cy.get('#root [data-test-id=x_0_y_0] [data-test-id=robotic-image-container]').should(
-          'be.visible'
-        );
+      cy.get('#root [data-test-id=position-y-box] input').type('0');
+
+      cy.get('#root [data-test-id=facing-select-box] [role=button]').click();
+
+      cy.get('li[data-value=NORTH]').click();
+
+      cy.get('#root button[data-test-id=button-place]').click();
+
+      cy.get('#root [data-test-id=x_0_y_0] [data-test-id=robotic-image-container]').should(
+        'be.visible'
+      );
     });
     it('Stays in same box, does not change location', () => {
-
       cy.get('#root button[data-test-id=turn-left-button]').click();
 
       cy.get('#root [data-test-id=x_0_y_0] [data-test-id=robotic-image-container]').should(
@@ -177,67 +176,81 @@ describe('Robot Vacuum - Simple Commands', () => {
     });
 
     it('Facing North, turn right, now faces EAST', () => {
+      cy.get('#root button[data-test-id=turn-right-button]').click();
 
-        cy.get('#root button[data-test-id=turn-right-button]').click();
+      cy.get('#root button[data-test-id=report-button]').click();
 
-        cy.get('#root button[data-test-id=report-button]').click();
-
-        cy.get('#root [data-test-id=command-report-box]').contains('0,0,EAST');
-
+      cy.get('#root [data-test-id=command-report-box]').contains('0,0,EAST');
     });
 
     it('Facing North, turn left, now faces WEST', () => {
-        cy.get('#root button[data-test-id=turn-left-button]').click();
+      cy.get('#root button[data-test-id=turn-left-button]').click();
 
-        cy.get('#root button[data-test-id=report-button]').click();
+      cy.get('#root button[data-test-id=report-button]').click();
 
-        cy.get('#root [data-test-id=command-report-box]').contains('0,0,WEST');
-
+      cy.get('#root [data-test-id=command-report-box]').contains('0,0,WEST');
     });
 
     it('Facing North, turn left twice now faces SOUTH', () => {
-        cy.get('#root button[data-test-id=turn-left-button]').click();
+      cy.get('#root button[data-test-id=turn-left-button]').click();
 
-        cy.get('#root button[data-test-id=turn-left-button]').click();
+      cy.get('#root button[data-test-id=turn-left-button]').click();
 
-        cy.get('#root button[data-test-id=report-button]').click();
+      cy.get('#root button[data-test-id=report-button]').click();
 
-        cy.get('#root [data-test-id=command-report-box]').contains('0,0,SOUTH');
-
+      cy.get('#root [data-test-id=command-report-box]').contains('0,0,SOUTH');
     });
 
     it('Facing North, turn right twice now faces SOUTH', () => {
-        cy.get('#root button[data-test-id=turn-right-button]').click();
+      cy.get('#root button[data-test-id=turn-right-button]').click();
 
-        cy.get('#root button[data-test-id=turn-right-button]').click();
+      cy.get('#root button[data-test-id=turn-right-button]').click();
 
-        cy.get('#root button[data-test-id=report-button]').click();
+      cy.get('#root button[data-test-id=report-button]').click();
 
-        cy.get('#root [data-test-id=command-report-box]').contains('0,0,SOUTH');
-
+      cy.get('#root [data-test-id=command-report-box]').contains('0,0,SOUTH');
     });
   });
 
-  describe('Can show report when robot is placed -', ()=>{
-    it('Placed robot on available block and report prints placed location', ()=>{
-        cy.get('#root [data-test-id=position-x-box] input').type('0');
+  describe.only('Can show report when robot is placed -', () => {
+    it('Placed robot on available block and report prints placed location', () => {
+      cy.get('#root [data-test-id=position-x-box] input').type('0');
 
-        cy.get('#root [data-test-id=position-y-box] input').type('0');
-  
-        cy.get('#root [data-test-id=facing-select-box] [role=button]').click();
-  
-        cy.get('li[data-value=NORTH]').click();
-  
-        cy.get('#root button[data-test-id=button-place]').click();
-  
-        cy.get('#root [data-test-id=x_0_y_0] [data-test-id=robotic-image-container]').should(
-          'be.visible'
-        );
+      cy.get('#root [data-test-id=position-y-box] input').type('0');
 
-        cy.get('#root button[data-test-id=report-button]').click();
+      cy.get('#root [data-test-id=facing-select-box] [role=button]').click();
 
-        cy.get('#root [data-test-id=command-report-box]').contains('0,0,NORTH');
-    })
-  })
+      cy.get('li[data-value=NORTH]').click();
 
+      cy.get('#root button[data-test-id=button-place]').click();
+
+      cy.get('#root [data-test-id=x_0_y_0] [data-test-id=robotic-image-container]').should(
+        'be.visible'
+      );
+
+      cy.get('#root button[data-test-id=report-button]').click();
+
+      cy.get('#root [data-test-id=command-report-box]').contains('0,0,NORTH');
+    });
+
+    it('No report when start with non place command, and only after valid place show a report', () => {
+      cy.get('#root button[data-test-id=button-move]').click();
+
+      cy.get('#root [data-test-id=robotic-image-container]').should('not.exist');
+
+      cy.get('#root button[data-test-id=button-move]').click();
+
+      cy.get('#root [data-test-id=command-report-box]').should('be.empty');
+
+      cy.get('#root [data-test-id=position-x-box] input').type('0');
+
+      cy.get('#root [data-test-id=position-y-box] input').type('0');
+
+      cy.get('#root [data-test-id=facing-select-box] [role=button]').click();
+      cy.get('li[data-value=NORTH]').click();
+      cy.get('#root button[data-test-id=button-place]').click();
+      cy.get('#root button[data-test-id=report-button]').click();
+      cy.get('#root [data-test-id=command-report-box]').contains('NORTH');
+    });
+  });
 });

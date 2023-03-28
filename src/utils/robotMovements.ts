@@ -193,7 +193,7 @@ const multiLineCommandsEvaluate = (
         facing: RobotFacing.east,
         gridSize,
       }
-    )?.report || null
+    )
   );
 };
 

@@ -179,7 +179,7 @@ const RobotGrid = (props: Props) => {
                               <Box data-test-id={'robotic-image-container'}>
                                 <img
                                   style={{
-                                    maxHeight: '45px',
+                                    maxHeight: '110px',
                                     transform: robotIconRotation(facing),
                                   }}
                                   src={window.location.href + 'img/roboticVacuum.png'}

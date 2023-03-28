@@ -14,5 +14,12 @@ Steps to run this project
 -> Running Unit tests
 --> * npm run test
 
+-> Running a test with providing input from command line and also providing expected output
+--> * npm run test:custom --  try="PLACE 0,0,EAST|MOVE|MOVE|REPORT" expected="2,0,EAST"
+Some more details about the format:
+the custom argument try="<List of commands>" must be separated by the delimiter "|".
+the custom argument expected="<OUTPUT>" can be used to quickly assert if the test results expected output.
+if this argument is not passed, the test just outputs the result of the command, and runs succesfully.
+
 -> Running end-to-end testing
 --> * npm run cypress:open

@@ -22,7 +22,7 @@ const RobotControl = (props: any) => {
     xLocation: location?.x || 0,
     yLocation: location?.y || 0,
     robotFacing: facing || RobotFacing.east,
-    multiLineCommands: '',
+    multiLineCommands: 'PLACE 0,0,NORTH',
   });
 
   useEffect(() => {
@@ -96,7 +96,10 @@ const RobotControl = (props: any) => {
 
   const multiLineCommandChangeHandler = useCallback(
     (e: any) => {
-      setUiState({ ...localUIState, multiLineCommands: e.target.value as string });
+      setUiState({
+        ...localUIState,
+        multiLineCommands: e.target.value,
+      });
     },
     [localUIState]
   );
@@ -114,7 +117,7 @@ const RobotControl = (props: any) => {
 
   return (
     <Container
-      data-test-id="robot-commands-container"
+      data-test-id='robot-commands-container'
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -130,7 +133,7 @@ const RobotControl = (props: any) => {
 
       <Box>
         <Container
-          data-test-id="multiple-commands-container"
+          data-test-id='multiple-commands-container'
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
           disableGutters>
           <TextField
@@ -139,7 +142,11 @@ const RobotControl = (props: any) => {
             multiline
             rows={4}
             defaultValue='PLACE 0,0,NORTH'
+            value={localUIState.multiLineCommands}
             variant='filled'
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+              (e.target.value = ('' + e.target.value).toUpperCase())
+            }
             onChange={multiLineCommandChangeHandler}
             sx={{
               marginBottom: '15px',
@@ -164,7 +171,7 @@ const RobotControl = (props: any) => {
 
       <Divider sx={{ minWidth: '20px' }} />
 
-      <Box sx={{ flex: '1' }} data-test-id="simple-command-container">
+      <Box sx={{ flex: '1' }} data-test-id='simple-command-container'>
         <Container sx={{ display: 'flex', gap: '10px' }} disableGutters>
           <Container
             sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}

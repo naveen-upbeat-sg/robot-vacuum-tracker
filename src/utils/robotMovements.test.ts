@@ -132,7 +132,7 @@ describe('RobotVacuum Movements - ', () => {
     });
     it('generates a report for given set of commands', () => {
       const testMultiLineCommand = 'PLACE 0,0,NORTH \nMOVE \nREPORT';
-      expect(multiLineCommandsEvaluate(testMultiLineCommand, defaultGrid)).toContain('1');
+      expect(multiLineCommandsEvaluate(testMultiLineCommand, defaultGrid)?.report).toContain('1');
     });
   });
 });
