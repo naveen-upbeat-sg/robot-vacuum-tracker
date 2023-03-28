@@ -87,8 +87,8 @@ function appReducer(state: RobotStateType, action: RobotAction): RobotStateType 
       const facing = resultSplitArray?.[2];
 
       const updatedLocation = { ...state.location, x: xLocation, y: yLocation };
-      state.commandHistory.push(action.payload.commands);
-      const updatedCommandHistory = [...state.commandHistory];
+      
+      const updatedCommandHistory = state.commandHistory.concat([...action.payload.commands]);
       return {
         ...state,
         reportMessage: reportMesageUpdate,

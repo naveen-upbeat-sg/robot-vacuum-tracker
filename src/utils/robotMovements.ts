@@ -104,6 +104,9 @@ const reportRobotStat: (location: LocationAlias, facing: RobotFacing) => string 
   location,
   facing
 ) => {
+  if(!location || !facing){
+    return "";
+  }
   return `${location.x},${location.y},${facing}`;
 };
 
