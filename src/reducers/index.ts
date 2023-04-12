@@ -39,9 +39,13 @@ function appReducer(state: RobotStateType, action: RobotAction): RobotStateType 
       const updatedCommandHistory = [...state.commandHistory];
 
       return {
-        ...state,
-        facing: robotPosition ? robotPosition.facing : null,
-        location: robotPosition ? robotPosition.location : null,
+        ...state, // JSON.parse(JSON.stringify(state)), lodash.deepClone(obj, 2), redux-thunk, structured-clone,
+        facing: robotPosition
+          ? robotPosition.location
+            ? robotPosition.facing
+            : state.facing
+          : state.facing,
+        location: robotPosition ? robotPosition.location : state.location,
         commandHistory: updatedCommandHistory,
       };
     }

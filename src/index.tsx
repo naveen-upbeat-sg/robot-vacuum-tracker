@@ -12,6 +12,7 @@ import { createRoot } from 'react-dom/client';
 import BasicLayout from './containers/BasicLayout';
 import appReducer from './reducers';
 import initialState from './store';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -23,7 +24,9 @@ const App = () => {
   return (
     <Fragment>
       <CssBaseline />
-      <BasicLayout state={state} dispatch={dispatch} />
+      <ErrorBoundary fallback={<div>Something went wrong</div>}>
+        <BasicLayout state={state} dispatch={dispatch} />
+      </ErrorBoundary>
     </Fragment>
   );
 };

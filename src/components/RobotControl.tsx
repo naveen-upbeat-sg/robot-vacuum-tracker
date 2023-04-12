@@ -29,9 +29,9 @@ const RobotControl = (props: any) => {
     const { location, facing } = props.state;
     setUiState({
       ...localUIState,
-      xLocation: location?.x,
-      yLocation: location?.y,
-      robotFacing: facing,
+      xLocation: location?.x || localUIState.xLocation,
+      yLocation: location?.y || localUIState.yLocation,
+      robotFacing: facing || localUIState.robotFacing,
     });
   }, [props.state]);
 
