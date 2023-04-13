@@ -46,7 +46,11 @@ const CommandHistory = (props: CommandHistoryProps) => {
           padding: '10px',
         }}>
         {commandHistory.map((cmd: string, cmdIndex: number) => {
-          return <Typography variant='body2'>{`${cmdIndex + 1}. ${cmd}`}</Typography>;
+          return (
+            <Typography key={cmdIndex + cmd} variant='body2'>{`${
+              cmdIndex + 1
+            }. ${cmd}`}</Typography>
+          );
         })}
       </Box>
     </Container>

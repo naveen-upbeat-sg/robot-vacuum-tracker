@@ -29,8 +29,8 @@ const RobotControl = (props: any) => {
     const { location, facing } = props.state;
     setUiState({
       ...localUIState,
-      xLocation: location?.x || localUIState.xLocation,
-      yLocation: location?.y || localUIState.yLocation,
+      xLocation: location ? location.x : localUIState.xLocation,
+      yLocation: location ? location.y : localUIState.yLocation,
       robotFacing: facing || localUIState.robotFacing,
     });
   }, [props.state]);
@@ -141,7 +141,7 @@ const RobotControl = (props: any) => {
             data-test-id='multi-commands-box'
             multiline
             rows={4}
-            defaultValue='PLACE 0,0,NORTH'
+            //defaultValue='PLACE 0,0,NORTH'
             value={localUIState.multiLineCommands}
             variant='filled'
             onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -185,7 +185,8 @@ const RobotControl = (props: any) => {
                   data-test-id='position-x-box'
                   label='X: '
                   variant='standard'
-                  //value={localUIState.xLocation}
+                  value={localUIState.xLocation}
+                  type='number'
                   onChange={(e) =>
                     setUiState({ ...localUIState, xLocation: Number(e.target.value) as number })
                   }
@@ -196,7 +197,8 @@ const RobotControl = (props: any) => {
                   data-test-id='position-y-box'
                   label='Y: '
                   variant='standard'
-                  //value={localUIState.yLocation}
+                  value={localUIState.yLocation}
+                  type='number'
                   onChange={(e) =>
                     setUiState({ ...localUIState, yLocation: Number(e.target.value) as number })
                   }
